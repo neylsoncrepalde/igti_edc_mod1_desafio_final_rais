@@ -1,28 +1,28 @@
 variable "region_id" {
-  default = "us-east-1"
+  default = "us-east-2"
 }
 
 variable "prefix" {
-  default = "prefix"
+  default = "igti_ney_df_rais"
 }
 
 variable "account" {
-  default = 123456789
+  default = 127012818163
 }
 
 # Prefix configuration and project common tags
 locals {
   prefix = "${var.prefix}-${terraform.workspace}"
   common_tags = {
-    Project      = "Datalake"
+    Project      = "RAIS"
     ManagedBy    = "Terraform"
-    Department   = "systems",
+    Department   = "IGTI",
     Provider     = "A3DATA",
     Owner        = "Data Engineering"
     BusinessUnit = "Data"
     Billing      = "Infrastructure"
     Environment  = terraform.workspace
-    UserEmail    = "rony@a3data.com.br"
+    UserEmail    = "neylson.crepalde@a3data.com.br"
   }
 }
 

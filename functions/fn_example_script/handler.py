@@ -1,35 +1,40 @@
 import boto3
-import zipfile
-import os
-from io import BytesIO
+from datetime import datetime
 
-
-s3 = boto3.client("s3")
-
+sageclient = boto3.client('sagemaker', region_name='us-east-2')
+sagemaker_role='arn:aws:iam::127012818163:role/service-role/AmazonSageMaker-ExecutionRole-20210518T105032'
 
 def handler(event, context):
+    
+    process_job_arn = sageclient.create_processing_job(
+        ProcessingJobName= f"rais2020-extraction-{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}",
+        ProcessingOutputConfig={
+            'Outputs': [
+                {
+                    'OutputName': 'rais',
+                    'S3Output': {
+                        'S3Uri': 's3://igti-ney-prod-landing-zone-127012818163/rais',
+                        'LocalPath': '/opt/ml/processing/output/rais',
+                        'S3UploadMode': 'EndOfJob'
+                    }
+                },
+            ]
+        },
+        ProcessingResources={
+            'ClusterConfig': {
+                'InstanceCount': 1,
+                'InstanceType': 'ml.m5.xlarge',
+                'VolumeSizeInGB': 50,
 
-    bucket = event["bucketName"]
-    input_key = event["inputKey"]
-    output_prefix = event["outputPrefix"]
+            }
+        },
+        AppSpecification={
+            'ImageUri': '127012818163.dkr.ecr.us-east-2.amazonaws.com/igti-ney-prod-extract-rais:latest'
+        },
+        RoleArn=sagemaker_role
+    )
 
-    s3_resource = boto3.resource("s3")
-
-    _, ext = os.path.splitext(input_key)
-
-    if ext == ".zip":
-
-        zip_obj = s3_resource.Object(bucket_name=bucket, key=input_key)
-        print(zip_obj)
-        buffer = BytesIO(zip_obj.get()["Body"].read())
-
-        z = zipfile.ZipFile(buffer)
-        for filename in z.namelist():
-            file_info = z.getinfo(filename)
-            s3_resource.meta.client.upload_fileobj(
-                z.open(filename),
-                Bucket=bucket,
-                Key=output_prefix + os.path.basename(filename),
-            )
-
-    return
+    return {
+        'statusCode': 200,
+        'body': f"Started job {process_job_arn['ProcessingJobArn']}"
+    }
