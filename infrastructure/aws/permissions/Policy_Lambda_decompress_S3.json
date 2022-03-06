@@ -23,6 +23,15 @@
                 "sagemaker:CreateProcessingJob"
             ],
             "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::127012818163:role/service-role/AmazonSageMaker-ExecutionRole-20210518T105032"
+            ]
         }
     ]
 }
