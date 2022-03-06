@@ -16,7 +16,7 @@
                 "s3:*"
             ],
             "Resource": "*"
-        }
+        },
         {
             "Effect": "Allow",
             "Action": [
