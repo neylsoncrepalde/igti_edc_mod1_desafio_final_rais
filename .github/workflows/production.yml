@@ -20,7 +20,7 @@ jobs:
   #         bash ./CI/scripts/build_and_push.sh prod
   prod_plan:
     name: Production Plan
-    needs: prod_build_and_push
+    #needs: prod_build_and_push
     runs-on: ubuntu-latest
     container: ronya3data/rony-ci:0.0.1-terraform1.0.3
     steps:
