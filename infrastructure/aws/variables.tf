@@ -3,7 +3,7 @@ variable "region_id" {
 }
 
 variable "prefix" {
-  default = "igti_ney_df_rais"
+  default = "igti-ney-rais"
 }
 
 variable "account" {
@@ -55,9 +55,4 @@ variable "bucket_paths" {
     "s3://processing-zone",
     "s3://delivery-zone"
   ]
-}
-
-variable "bucket_functions" {
-  description = "Create S3 bucket for lambda functions"
-  default     = "temp-functions-rony"
 }

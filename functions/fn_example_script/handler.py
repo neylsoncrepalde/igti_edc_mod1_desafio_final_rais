@@ -13,7 +13,7 @@ def handler(event, context):
                 {
                     'OutputName': 'rais',
                     'S3Output': {
-                        'S3Uri': 's3://igti-ney-prod-landing-zone-127012818163/rais',
+                        'S3Uri': 's3://igti-ney-rais-prod-landing-zone-127012818163/rais',
                         'LocalPath': '/opt/ml/processing/output/rais',
                         'S3UploadMode': 'EndOfJob'
                     }
