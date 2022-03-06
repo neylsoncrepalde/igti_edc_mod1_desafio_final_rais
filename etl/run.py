@@ -1,5 +1,4 @@
-import requests
-from io import BytesIO
+import wget
 import py7zr
 import os
 
@@ -16,10 +15,11 @@ urls = [
 ]
 
 def obter_dados(url):
-    filebytes = BytesIO(requests.get(url, stream=True).content)
-    archive = py7zr.SevenZipFile(filebytes)
-    archive.extractall(path=basepath)
+    filename = wget.download(url, out=dlpath)
+    archive = py7zr.SevenZipFile(filename)
+    archive.extractall(path=dlpath)
     archive.close()
+    os.remove(filename)
     return True
     
 if __name__ == "__main__":
