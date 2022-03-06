@@ -17,5 +17,12 @@
             ],
             "Resource": "*"
         }
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:CreateProcessingJob"
+            ],
+            "Resource": "*"
+        }
     ]
 }
