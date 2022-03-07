@@ -2,7 +2,7 @@ from urllib.request import urlretrieve
 import py7zr
 import os
 
-basepath = "./opt/ml/processing/output"
+basepath = "/opt/ml/processing/output"
 dlpath = f"{basepath}/rais"
 
 names = [
@@ -26,10 +26,10 @@ def obter_dados(url, name):
     filename = dlpath + '/' + name
     urlretrieve(url, filename=filename)
     print(filename)
-    #archive = py7zr.SevenZipFile(filename)
-    #archive.extractall(path=dlpath)
-    #archive.close()
-    #os.remove(filename)
+    archive = py7zr.SevenZipFile(filename)
+    archive.extractall(path=dlpath)
+    archive.close()
+    os.remove(filename)
     return True
     
 if __name__ == "__main__":
