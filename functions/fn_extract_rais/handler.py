@@ -1,7 +1,7 @@
 import boto3
 from datetime import datetime
 
-sageclient = boto3.client('sagemaker', region_name='us-east-2')
+sageclient = boto3.client('sagemaker', region_name='sa-east-1')
 sagemaker_role='arn:aws:iam::127012818163:role/service-role/AmazonSageMaker-ExecutionRole-20210518T105032'
 
 def handler(event, context):
@@ -29,7 +29,7 @@ def handler(event, context):
             }
         },
         AppSpecification={
-            'ImageUri': '127012818163.dkr.ecr.us-east-2.amazonaws.com/igti-ney-prod-extract-rais:latest'
+            'ImageUri': '127012818163.dkr.ecr.sa-east-1.amazonaws.com/igti-ney-prod-extract-rais:latest'
         },
         RoleArn=sagemaker_role
     )
