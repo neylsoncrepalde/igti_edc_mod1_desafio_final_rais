@@ -1,11 +1,10 @@
 resource "aws_glue_crawler" "glue_crawler" {
-  count         = length(var.database_names)
-  database_name = var.database_names[count.index]
-  name          = "${local.prefix}-${var.database_names[count.index]}_crawler"
+  database_name = "igti_du"
+  name          = "igti_rais_processing_crawler"
   role          = aws_iam_role.glue_role.arn
 
   s3_target {
-    path = "${local.prefix}-${var.bucket_paths[count.index]}-${var.account}"
+    path = "s3://igti-ney-rais-prod-processing-zone-127012818163/rais/"
   }
 
   tags = local.common_tags

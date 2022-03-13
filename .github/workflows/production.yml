@@ -5,19 +5,19 @@ on:
     branches: [main, master]
 
 jobs:
-  prod_build_and_push:
-   name: Production Build and Push
-   runs-on: ubuntu-latest
-   container: docker:20-dind
-   steps:
-     - uses: actions/checkout@v2
-     - run: |
-         apk add util-linux pciutils usbutils coreutils binutils findutils grep bash
-         apk add python3
-         apk add --update py3-pip
-         pip3 install awscli
-         chmod -R +x ./CI/scripts
-         bash ./CI/scripts/build_and_push.sh prod
+  # prod_build_and_push:
+  #  name: Production Build and Push
+  #  runs-on: ubuntu-latest
+  #  container: docker:20-dind
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - run: |
+  #        apk add util-linux pciutils usbutils coreutils binutils findutils grep bash
+  #        apk add python3
+  #        apk add --update py3-pip
+  #        pip3 install awscli
+  #        chmod -R +x ./CI/scripts
+  #        bash ./CI/scripts/build_and_push.sh prod
   prod_plan:
     name: Production Plan
     #needs: prod_build_and_push

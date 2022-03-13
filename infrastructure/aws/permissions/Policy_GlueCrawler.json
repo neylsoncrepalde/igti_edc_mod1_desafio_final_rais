@@ -44,7 +44,8 @@
             ],
             "Resource": [
                 "arn:aws:s3:::aws-glue-*/*",
-                "arn:aws:s3:::*/*aws-glue-*/*"
+                "arn:aws:s3:::*/*aws-glue-*/*",
+                "arn:aws:s3:::igti-ney-*/*"
             ]
         },
         {

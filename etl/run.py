@@ -2,11 +2,11 @@ from urllib.request import urlretrieve
 import py7zr
 import os
 
-basepath = "/opt/ml/processing/output"
+basepath = "./opt/ml/processing/output"
 dlpath = f"{basepath}/rais"
 
 names = [
-     "RAIS_VINC_PUB_CENTRO_OESTE.7z",
+     #"RAIS_VINC_PUB_CENTRO_OESTE.7z",
      "RAIS_VINC_PUB_NORDESTE.7z",
      "RAIS_VINC_PUB_NORTE.7z",
      "RAIS_VINC_PUB_SUL.7z",
@@ -14,7 +14,7 @@ names = [
      "RAIS_VINC_PUB_SP.7z",
 ]
 urls = [
-    "ftp://ftp.mtps.gov.br/pdet/microdados/RAIS/2020/RAIS_VINC_PUB_CENTRO_OESTE.7z",
+    #"ftp://ftp.mtps.gov.br/pdet/microdados/RAIS/2020/RAIS_VINC_PUB_CENTRO_OESTE.7z",
     "ftp://ftp.mtps.gov.br/pdet/microdados/RAIS/2020/RAIS_VINC_PUB_NORDESTE.7z",
     "ftp://ftp.mtps.gov.br/pdet/microdados/RAIS/2020/RAIS_VINC_PUB_NORTE.7z",
     "ftp://ftp.mtps.gov.br/pdet/microdados/RAIS/2020/RAIS_VINC_PUB_SUL.7z",
@@ -25,11 +25,11 @@ urls = [
 def obter_dados(url, name):
     filename = dlpath + '/' + name
     urlretrieve(url, filename=filename)
-    print(filename)
-    archive = py7zr.SevenZipFile(filename)
-    archive.extractall(path=dlpath)
-    archive.close()
-    os.remove(filename)
+    #print(filename)
+    #archive = py7zr.SevenZipFile(filename)
+    #archive.extractall(path=dlpath)
+    #archive.close()
+    #os.remove(filename)
     return True
     
 if __name__ == "__main__":
