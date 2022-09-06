@@ -16,7 +16,7 @@ locals {
   common_tags = {
     Project      = "RAIS"
     ManagedBy    = "Terraform"
-    Department   = "IGTI",
+    Department   = "XPE",
     Provider     = "A3DATA",
     Owner        = "Data Engineering"
     BusinessUnit = "Data"
