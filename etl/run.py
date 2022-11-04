@@ -2,6 +2,8 @@ from urllib.request import urlretrieve
 import py7zr
 import os
 
+print("Alteracao para deployment")
+
 basepath = "./opt/ml/processing/output"
 dlpath = f"{basepath}/rais"
 
